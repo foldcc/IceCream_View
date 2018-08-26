@@ -7,23 +7,15 @@ namespace IcecreamView {
     public abstract class GameViewAbstract : MonoBehaviour , GameViewInterface
     {
 
-        public virtual void View_Init() {
+        public virtual void OnInitView() { }
 
-        }
+        public virtual void OnOpenView() { }
 
-        public virtual void View_Disable()
+        public virtual void OnCloseView() { }
+
+        public void CloseView()
         {
-
-        }
-
-        public virtual void View_Enable()
-        {
-
-        }
-
-        public virtual void View_Destory()
-        {
-            View_Disable();
+            OnOpenView();
             gameObject.SetActive(false);
         }
     }
