@@ -16,7 +16,7 @@ namespace IcecreamView {
         /// 关闭当前view
         /// </summary>
         public void CloseView() {
-            GetComponent<GameViewModuleConnector>().DestoryView();
+            GetComponent<GameViewModuleConnector>().CloseView();
         }
 
         public virtual void OnOpenView() { }
