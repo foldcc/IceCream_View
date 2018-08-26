@@ -8,15 +8,6 @@ public class viewmodule_backbtn : GameViewAbstractModule {
 
     public Button backBtn;
 
-    public override void DestoryView()
-    {
-    }
-
-    private void Start()
-    {
-        
-    }
-
     public override void OnOpenView()
     {
     }
