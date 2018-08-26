@@ -37,7 +37,7 @@ namespace IcecreamView{
             foreach (string item in ConfigViewDictionary.Keys)
             {
                 ViewDictionary.Add(item, Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
-                ViewDictionary[item].View_Init();
+                ViewDictionary[item].OnInitView();
                 ViewDictionary[item].gameObject.SetActive(false);
             }
         }
@@ -71,7 +71,7 @@ namespace IcecreamView{
             if (ViewDictionary.ContainsKey(table))
             {
                 ViewDictionary[table].gameObject.SetActive(true);
-                ViewDictionary[table].View_Enable();
+                ViewDictionary[table].OnCloseView();
                 return ViewDictionary[table];
             }
             else {
@@ -92,7 +92,7 @@ namespace IcecreamView{
                 if (item.Equals(table))
                 {
                     if (!ViewDictionary[table].gameObject.activeSelf) {
-                        ViewDictionary[table].View_Enable();
+                        ViewDictionary[table].OnCloseView();
                     }
                     ViewDictionary[table].gameObject.SetActive(true);
                     view = ViewDictionary[table];
@@ -100,7 +100,7 @@ namespace IcecreamView{
                 else
                 {
                     if (ViewDictionary[item].gameObject.activeSelf) {
-                        ViewDictionary[item].View_Destory();
+                        ViewDictionary[item].CloseView();
                     }
                 }
             }
@@ -114,7 +114,7 @@ namespace IcecreamView{
         public void CloseView(string table) {
             if (ViewDictionary.ContainsKey(table))
             {
-                ViewDictionary[table].View_Destory();
+                ViewDictionary[table].CloseView();
             }
         }
         /// <summary>
@@ -123,7 +123,7 @@ namespace IcecreamView{
         public void CloseAllView() {
             foreach (var item in ViewDictionary.Keys)
             {
-                ViewDictionary[item].View_Destory();
+                ViewDictionary[item].CloseView();
             }
         }
 

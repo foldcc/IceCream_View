@@ -2,13 +2,13 @@
 
     public interface GameViewInterface
     {
-        void View_Init();
+        void OnInitView();
 
-        void View_Disable();
+        void OnOpenView();
 
-        void View_Enable();
+        void OnCloseView();
 
-        void View_Destory();
+        void CloseView();
     }
 
 }
