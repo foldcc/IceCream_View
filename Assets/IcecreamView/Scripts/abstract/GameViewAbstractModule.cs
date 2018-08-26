@@ -6,7 +6,7 @@ namespace IcecreamView {
     /// <summary>
     /// gameView模板类
     /// </summary>
-    [RequireComponent(typeof(GameViewModuleConnector)) , AddComponentMenu("IcecreamModule")]
+    [RequireComponent(typeof(GameViewModuleConnector))]
     public abstract class GameViewAbstractModule : MonoBehaviour, GameViewInterface
     {
         [Header("执行优先级")]
