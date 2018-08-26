@@ -6,31 +6,25 @@ namespace IcecreamView {
     /// <summary>
     /// gameView模板类
     /// </summary>
-    [RequireComponent(typeof(GameViewModuleConnector)) , AddComponentMenu("IcecreamModule/")]
-    public class GameViewAbstractModule : MonoBehaviour, GameViewInterface
+    [RequireComponent(typeof(GameViewModuleConnector)) , AddComponentMenu("IcecreamModule")]
+    public abstract class GameViewAbstractModule : MonoBehaviour, GameViewInterface
     {
         [Header("执行优先级")]
         public int prioritylevel = 1;
 
-        public virtual void View_Destory()
-        {
-
+        /// <summary>
+        /// 关闭当前view
+        /// </summary>
+        public void CloseView() {
+            GetComponent<GameViewModuleConnector>().DestoryView();
         }
 
-        public virtual void View_Disable()
-        {
+        public virtual void OnOpenView() { }
 
-        }
+        public virtual void OnCloseView() { }
 
-        public virtual void View_Enable()
-        {
+        public virtual void OnInitView() { }
 
-        }
-
-        public virtual void View_Init()
-        {
-
-        }
     }
 }
 

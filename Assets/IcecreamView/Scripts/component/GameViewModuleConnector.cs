@@ -11,36 +11,47 @@ namespace IcecreamView
     {
         private List<GameViewAbstractModule> gameViewAbstractModules = new List<GameViewAbstractModule>();
 
-        public override void View_Destory()
+        public new void CloseView()
         {
             foreach (var item in gameViewAbstractModules)
             {
-                item.View_Destory();
+                item.CloseView();
             }
-            base.View_Destory();
+            base.CloseView();
         }
 
-        public override void View_Disable()
+        public override void OnOpenView()
         {
             foreach (var item in gameViewAbstractModules)
             {
-                item.View_Disable();
+                item.OnOpenView();
             }
-            base.View_Disable();
+            base.OnOpenView();
         }
 
-        public override void View_Enable()
+        public override void OnCloseView()
         {
             foreach (var item in gameViewAbstractModules)
             {
-                item.View_Enable();
+                item.OnCloseView();
             }
-            base.View_Enable();
         }
 
-        public override void View_Init()
+        public override void OnInitView()
         {
             GetComponents(gameViewAbstractModules);
+            gameViewAbstractModules.Sort((GameViewAbstractModule a , GameViewAbstractModule b) => {
+                if (a.prioritylevel <= b.prioritylevel) {
+                    return 1;
+                } else {
+                    return -1;
+                }
+            });
+
+            gameViewAbstractModules.ForEach(m => {
+                Debug.Log(m.ToString() + " 优先级: " + m.prioritylevel);
+            });
+
             if (gameViewAbstractModules == null)
             {
                 gameViewAbstractModules = new List<GameViewAbstractModule>();
@@ -48,10 +59,8 @@ namespace IcecreamView
 
             foreach (var item in gameViewAbstractModules)
             {
-                item.View_Init();
+                item.OnInitView();
             }
-
-            base.View_Init();
         }
     }
 }
