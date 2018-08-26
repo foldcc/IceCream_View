@@ -37,7 +37,6 @@ namespace IcecreamView{
             foreach (string item in ConfigViewDictionary.Keys)
             {
                 ViewDictionary.Add(item, Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
-                //Debug.Log(ViewDictionary[item].name + " class: " + ViewDictionary[item].GetType().Name);
                 ViewDictionary[item].View_Init();
                 ViewDictionary[item].gameObject.SetActive(false);
             }
@@ -103,19 +102,24 @@ namespace IcecreamView{
                     if (ViewDictionary[item].gameObject.activeSelf) {
                         ViewDictionary[item].View_Destory();
                     }
-                    
                 }
             }
             return view;
         }
 
+        /// <summary>
+        /// 关闭指定Table的页面
+        /// </summary>
+        /// <param name="table"></param>
         public void CloseView(string table) {
             if (ViewDictionary.ContainsKey(table))
             {
                 ViewDictionary[table].View_Destory();
             }
         }
-
+        /// <summary>
+        /// 关闭所有页面
+        /// </summary>
         public void CloseAllView() {
             foreach (var item in ViewDictionary.Keys)
             {
@@ -123,8 +127,12 @@ namespace IcecreamView{
             }
         }
 
-        
-
+        /// <summary>
+        /// 获取指定页面
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public T GetView<T>(string table)  where T : GameViewAbstract
         {
             if (ViewDictionary.ContainsKey(table))
@@ -135,6 +143,5 @@ namespace IcecreamView{
                 return default(T);
             }
         }
-
     }
 }
