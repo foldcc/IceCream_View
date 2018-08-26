@@ -1,4 +1,4 @@
-﻿namespace EasyGameTemplate {
+﻿namespace IcecreamView {
 
     public interface GameViewInterface
     {

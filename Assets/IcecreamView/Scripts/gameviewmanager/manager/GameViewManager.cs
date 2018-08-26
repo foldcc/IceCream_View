@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace EasyGameTemplate{
+namespace IcecreamView{
 
     public class GameViewManager : MonoBehaviour
     {

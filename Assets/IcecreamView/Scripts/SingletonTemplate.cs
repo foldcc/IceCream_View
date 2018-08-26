@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasyGameTemplate
+namespace IcecreamView
 {
     public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
     {
