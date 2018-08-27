@@ -40,6 +40,9 @@ namespace IcecreamView{
                 ViewDictionary[item].OnInitView();
                 ViewDictionary[item].gameObject.SetActive(false);
             }
+            if (Config.DefaultViewTable != null) {
+                OpenView(Config.DefaultViewTable);
+            }
         }
 
         public bool isTable(string table) {
