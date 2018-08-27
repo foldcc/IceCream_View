@@ -11,15 +11,6 @@ namespace IcecreamView
     {
         private List<GameViewAbstractModule> gameViewAbstractModules = new List<GameViewAbstractModule>();
 
-        public new void CloseView()
-        {
-            foreach (var item in gameViewAbstractModules)
-            {
-                item.CloseView();
-            }
-            base.CloseView();
-        }
-
         public override void OnOpenView()
         {
             foreach (var item in gameViewAbstractModules)
@@ -41,20 +32,22 @@ namespace IcecreamView
         {
             GetComponents(gameViewAbstractModules);
             gameViewAbstractModules.Sort((GameViewAbstractModule a , GameViewAbstractModule b) => {
-                if (a.prioritylevel <= b.prioritylevel) {
-                    return 1;
-                } else {
+                if (a.prioritylevel < b.prioritylevel) {
                     return -1;
+                } else if(a.prioritylevel > b.prioritylevel)
+                {
+                    return 1;
                 }
+                return 0;
             });
 
             gameViewAbstractModules.ForEach(m => {
-                Debug.Log(m.ToString() + " 优先级: " + m.prioritylevel);
+                m.moduleConnector = this;
             });
 
             if (gameViewAbstractModules == null)
             {
-                gameViewAbstractModules = new List<GameViewAbstractModule>();
+                gameViewAbstractModules = new List<GameViewAbstractModule>(); 
             }
 
             foreach (var item in gameViewAbstractModules)
