@@ -1,12 +1,20 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace IcecreamView{
 
-    public class GameViewManager : MonoBehaviour
+    public sealed class GameViewManager
     {
+
+        public static GameViewManager InstantiateViewManager(GameViewConfig gameViewConfig, Transform parent)
+        {
+            return new GameViewManager(gameViewConfig, parent);
+        }
+
         private GameViewConfig Config;
+
+        private GameViewManager Context;
 
         private Dictionary<string, GameViewInfo> ConfigViewDictionary;
 
@@ -14,12 +22,19 @@ namespace IcecreamView{
 
         public Transform UIparent;
 
+        public GameViewManager(GameViewConfig gameViewConfig, Transform parent) {
+            Init(gameViewConfig , parent);
+        }
+
+        [Obsolete("不在提供运行时修改View配置表",true)]
         public void SetConfig(GameViewConfig config) {
             Config = config;
         }
 
-        public void Init(GameViewConfig gameViewConfig, Transform parent)
+        private void Init(GameViewConfig gameViewConfig, Transform parent)
         {
+            Debug.Log(Context == null);
+
             Config = gameViewConfig;
 
             UIparent = parent;
@@ -36,8 +51,8 @@ namespace IcecreamView{
 
             foreach (string item in ConfigViewDictionary.Keys)
             {
-                ViewDictionary.Add(item, Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
-                ViewDictionary[item].SetViewManager(this);
+                ViewDictionary.Add(item, GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
+                ViewDictionary[item].SetViewManager(Context);
                 ViewDictionary[item].OnInitView();
                 ViewDictionary[item].gameObject.SetActive(false);
             }
@@ -121,6 +136,7 @@ namespace IcecreamView{
                 ViewDictionary[table].CloseView();
             }
         }
+
         /// <summary>
         /// 关闭所有页面
         /// </summary>
