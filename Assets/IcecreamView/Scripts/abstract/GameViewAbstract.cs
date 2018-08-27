@@ -12,7 +12,7 @@ namespace IcecreamView {
         private GameViewManager viewManager;
 
         public void SetViewManager(GameViewManager viewManager) {
-            if (this.viewManager == null) {
+            if (this.viewManager != null) {
                 this.viewManager = viewManager;
             }
         }
