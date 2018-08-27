@@ -12,7 +12,7 @@ public class viewmodule_toview : GameViewAbstractModule
     {
         if (toview != null) {
             toview.onClick.AddListener(()=> {
-                moduleConnector.OpenView(viewTable);
+                viewConnector.OpenView(viewTable);
             });
         }
     }

@@ -8,16 +8,13 @@ public class viewmodule_backbtn : GameViewAbstractModule {
 
     public Button backBtn;
 
-    public override void OnOpenView()
-    {
-    }
-
-    public override void OnCloseView()
-    {
-    }
-
     public override void OnInitView()
     {
+        if (backBtn != null) {
+            backBtn.onClick.AddListener(()=> {
+                viewConnector.CloseView();
+            });
+        }
     }
 
 }

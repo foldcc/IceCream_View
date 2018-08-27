@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: ViewConfig
   m_EditorClassIdentifier: 
   ConfigName: TestViewConfig
-  DefaultViewTable: Test1
+  DefaultViewTable: MainPanel
   GameViewList:
-  - Table: Test1
+  - Table: MainPanel
     TableInfo: 
-    View: {fileID: 114870070191719872, guid: a27f14c2db4e3f2409647c7b2669a4b0, type: 2}
-  - Table: Test2
+    View: {fileID: 114479519334044784, guid: 08f45ce5974604241be0739be71a61c2, type: 2}
+  - Table: HelpPanel
     TableInfo: 
-    View: {fileID: 114659957440970156, guid: 6979231961620814b8bfbc702b53067e, type: 2}
-  - Table: Test3
+    View: {fileID: 114620517157865158, guid: 78ac6ffd24bf64c4bb6b9c0720251935, type: 2}
+  - Table: GamePanel
     TableInfo: 
-    View: {fileID: 114793297101621942, guid: fa592b59f770d534ebabe82ef218f37b, type: 2}
+    View: {fileID: 114887485968138206, guid: 883dac0dc258b4849a49ba351e748008, type: 2}

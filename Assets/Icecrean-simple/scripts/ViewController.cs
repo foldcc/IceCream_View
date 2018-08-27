@@ -14,7 +14,6 @@ public class ViewController : MonoBehaviour {
 
     private void Start()
     {
-        viewManager = new GameViewManager();
-        viewManager.Init(viewConfig , Canvasteansform);
+        viewManager = new GameViewManager(viewConfig, Canvasteansform);
     }
 }
