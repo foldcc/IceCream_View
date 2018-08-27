@@ -13,7 +13,7 @@ namespace IcecreamView {
         public int prioritylevel = 1;
 
         [HideInInspector]
-        public GameViewModuleConnector moduleConnector;
+        public GameViewModuleConnector viewConnector;
 
         public virtual void OnOpenView() { }
 
