@@ -14,8 +14,6 @@ namespace IcecreamView{
 
         private GameViewConfig Config;
 
-        private GameViewManager Context;
-
         private Dictionary<string, GameViewInfo> ConfigViewDictionary;
 
         private Dictionary<string, GameViewAbstract> ViewDictionary;
@@ -33,7 +31,6 @@ namespace IcecreamView{
 
         private void Init(GameViewConfig gameViewConfig, Transform parent)
         {
-            Debug.Log(Context == null);
 
             Config = gameViewConfig;
 
@@ -52,7 +49,7 @@ namespace IcecreamView{
             foreach (string item in ConfigViewDictionary.Keys)
             {
                 ViewDictionary.Add(item, GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
-                ViewDictionary[item].SetViewManager(Context);
+                ViewDictionary[item].SetViewManager(this);
                 ViewDictionary[item].OnInitView();
                 ViewDictionary[item].gameObject.SetActive(false);
             }

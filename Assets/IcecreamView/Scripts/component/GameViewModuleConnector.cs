@@ -42,7 +42,7 @@ namespace IcecreamView
             });
 
             gameViewAbstractModules.ForEach(m => {
-                m.moduleConnector = this;
+                m.viewConnector = this;
             });
 
             if (gameViewAbstractModules == null)
