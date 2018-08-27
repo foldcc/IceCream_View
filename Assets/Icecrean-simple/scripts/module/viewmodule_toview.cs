@@ -10,7 +10,10 @@ public class viewmodule_toview : GameViewAbstractModule
 
     public override void OnInitView()
     {
-
+        if (toview != null) {
+            toview.onClick.AddListener(()=> {
+                moduleConnector.OpenView(viewTable);
+            });
+        }
     }
-
 }

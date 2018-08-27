@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92d703ac166cd43a62ae17f7cade9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prioritylevel: 1
+  prioritylevel: -1
   backBtn: {fileID: 114547688869766470}
 --- !u!114 &114754029811744328
 MonoBehaviour:
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 305830f10dd27004e90c1ad304de112f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prioritylevel: 2
+  prioritylevel: 5
   toview: {fileID: 114445670176064076}
   viewTable: Test3
 --- !u!222 &222164607373990726
