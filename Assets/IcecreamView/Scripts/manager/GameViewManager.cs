@@ -37,6 +37,7 @@ namespace IcecreamView{
             foreach (string item in ConfigViewDictionary.Keys)
             {
                 ViewDictionary.Add(item, Instantiate<GameViewAbstract>(ConfigViewDictionary[item].View , UIparent));
+                ViewDictionary[item].SetViewManager(this);
                 ViewDictionary[item].OnInitView();
                 ViewDictionary[item].gameObject.SetActive(false);
             }
