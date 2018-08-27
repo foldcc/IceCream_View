@@ -7,17 +7,12 @@ namespace IcecreamView {
     /// gameView模板类
     /// </summary>
     [RequireComponent(typeof(GameViewModuleConnector))]
-    public abstract class GameViewAbstractModule : MonoBehaviour, GameViewInterface
+    public abstract class GameViewAbstractModule : MonoBehaviour
     {
         [Header("执行优先级")]
         public int prioritylevel = 1;
 
-        /// <summary>
-        /// 关闭当前view
-        /// </summary>
-        public void CloseView() {
-            GetComponent<GameViewModuleConnector>().CloseView();
-        }
+        public GameViewModuleConnector moduleConnector;
 
         public virtual void OnOpenView() { }
 
