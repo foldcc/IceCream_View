@@ -86,6 +86,7 @@ namespace IcecreamView{
         {
             if (ViewDictionary.ContainsKey(table))
             {
+                ViewDictionary[table].transform.SetAsLastSibling();
                 ViewDictionary[table].gameObject.SetActive(true);
                 ViewDictionary[table].OnCloseView();
                 return ViewDictionary[table];
