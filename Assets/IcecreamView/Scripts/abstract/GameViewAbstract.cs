@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace IcecreamView {
-
+    [DisallowMultipleComponent]
     public abstract class GameViewAbstract : MonoBehaviour , GameViewInterface
     {
         /// <summary>
