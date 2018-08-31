@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
+[assembly: System.Reflection.AssemblyVersion("1.0.*")]
 namespace IcecreamView
 {
     [CustomEditor(typeof(GameViewAbstract), true), CanEditMultipleObjects]
