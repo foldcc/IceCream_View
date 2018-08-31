@@ -26,12 +26,20 @@ namespace IcecreamView
             
             gUIStyle.fontSize = 20;
             gUIStyle.normal.textColor = Color.black;
-            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(0, 205, 255, 200));
+            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(0, 205, 255, 100));
             gUIStyle.alignment = TextAnchor.MiddleCenter;
             gUIStyle.margin = new RectOffset(0, 0, 10, 0);
 
             GUILayout.Space(10);
             GUILayout.Box(" Game View ", gUIStyle);
+
+            gUIStyle = new GUIStyle();
+            gUIStyle.fontSize = 16;
+            gUIStyle.normal.textColor = Color.white;
+            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(77, 77, 77, 255));
+            gUIStyle.alignment = TextAnchor.MiddleCenter;
+            GUILayout.Box(this.target.GetType().Name, gUIStyle);
+
             EditorGUILayout.HelpBox("游戏界面基础组件" , MessageType.None);
             GUILayout.Space(10);
             gUIStyle = null;
@@ -48,7 +56,7 @@ namespace IcecreamView
 
             gUIStyle.fontSize = 20;
             gUIStyle.normal.textColor = Color.black;
-            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(255, 0, 99, 200));
+            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(255, 0, 99, 100));
             gUIStyle.alignment = TextAnchor.MiddleCenter;
             gUIStyle.margin = new RectOffset(0, 0, 10, 0);
 
@@ -71,14 +79,22 @@ namespace IcecreamView
 
             gUIStyle.fontSize = 20;
             gUIStyle.normal.textColor = Color.black;
-            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(147, 255, 0, 200));
+            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(147, 255, 0, 100));
             gUIStyle.alignment = TextAnchor.MiddleCenter;
             gUIStyle.margin = new RectOffset(0, 0, 10, 0);
 
 
             GUILayout.Space(10);
             GUILayout.Box(" Game View Module ", gUIStyle);
-            EditorGUILayout.HelpBox("游戏界面自定义功能模块", MessageType.None);
+
+            gUIStyle = new GUIStyle();
+            gUIStyle.fontSize = 16;
+            gUIStyle.normal.textColor = Color.white;
+            gUIStyle.normal.background = GameViewAbstractEditor.GetTexture2D(new Color32(77, 77, 77, 255));
+            gUIStyle.alignment = TextAnchor.MiddleCenter;
+            GUILayout.Box(this.target.GetType().Name , gUIStyle);
+
+            EditorGUILayout.HelpBox("界面功能模块组件,允许多模块自由组合", MessageType.None);
             GUILayout.Space(10);
             gUIStyle = null;
             base.DrawDefaultInspector();

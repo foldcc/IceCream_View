@@ -55,8 +55,8 @@ GameObject:
   - component: {fileID: 224485989535753544}
   - component: {fileID: 222700120050741140}
   - component: {fileID: 114604910952647126}
-  - component: {fileID: 114510357564327564}
   - component: {fileID: 114620517157865158}
+  - component: {fileID: 114510357564327564}
   m_Layer: 0
   m_Name: HelpPanel
   m_TagString: Untagged
