@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IcecreamView{
-
+[assembly: System.Reflection.AssemblyVersion("1.0.*")]
+namespace IcecreamView
+{
+    
     public sealed class GameViewManager
     {
 

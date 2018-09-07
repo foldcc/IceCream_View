@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace IcecreamView {
-    [DisallowMultipleComponent]
+    [DisallowMultipleComponent,System.Serializable]
     public abstract class GameViewAbstract : MonoBehaviour , GameViewInterface
     {
         /// <summary>
         /// 对应View管理器
         /// </summary>
+        [System.NonSerialized]
         private GameViewManager viewManager;
 
         public void SetViewManager(GameViewManager viewManager) {
