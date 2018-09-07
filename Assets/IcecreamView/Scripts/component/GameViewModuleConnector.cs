@@ -21,7 +21,11 @@ namespace IcecreamView
 
         public override void OnOpenView()
         {
-            awaitType = RunType.OnOpen;
+            if (awaitType != RunType.OnOpen)
+            {
+                awaitCount = 0;
+                awaitType = RunType.OnOpen;
+            }
             while (awaitCount < gameViewAbstractModules.Count)
             {
                 gameViewAbstractModules[awaitCount].OnOpenView();
@@ -36,7 +40,10 @@ namespace IcecreamView
 
         public override void OnCloseView()
         {
-            awaitType = RunType.OnClose;
+            if (awaitType != RunType.OnClose) {
+                awaitCount = 0;
+                awaitType = RunType.OnClose;
+            }
             while (awaitCount < gameViewAbstractModules.Count)
             {
                 gameViewAbstractModules[awaitCount].OnCloseView();
@@ -74,20 +81,15 @@ namespace IcecreamView
                     m.viewConnector = this;
                 });
             }
-            while (awaitCount < gameViewAbstractModules.Count)
+
+            foreach (var item in gameViewAbstractModules)
             {
-                gameViewAbstractModules[awaitCount].OnInitView();
-                awaitCount++;
-                if (isAwait)
-                {
-                    return;
-                }
+                item.OnInitView();
             }
-            awaitCount = 0;
         }
 
         /// <summary>
-        /// 停止该页面正在执行的生命周期 ,停止的范围仅限(OnInit、OnOpen、OnClose)
+        /// 停止该页面正在执行的生命周期 ,停止的范围仅限(OnOpen、OnClose)
         /// 不支持多线程操作
         /// </summary>
         /// <returns>用于重新恢复中断的生命周期执行器</returns>
@@ -103,11 +105,10 @@ namespace IcecreamView
                 case RunType.OnClose:
                     OnCloseView();
                     break;
-                case RunType.OnInit:
-                    OnCloseView();
-                    break;
                 case RunType.OnOpen:
                     OnOpenView();
+                    break;
+                default:
                     break;
             }
         }
