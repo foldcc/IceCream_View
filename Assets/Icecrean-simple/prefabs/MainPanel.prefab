@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114479519334044784}
   - component: {fileID: 114892902459455800}
   - component: {fileID: 114214368991064028}
+  - component: {fileID: 114753279474325404}
   m_Layer: 0
   m_Name: MainPanel
   m_TagString: Untagged
@@ -332,6 +333,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89e48bed2b9d86428e0d398c3b3fd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114753279474325404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1191466893126000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e92d703ac166cd43a62ae17f7cade9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prioritylevel: 1
+  viewConnector: {fileID: 0}
+  backBtn: {fileID: 0}
 --- !u!114 &114809210980435122
 MonoBehaviour:
   m_ObjectHideFlags: 1
