@@ -5,7 +5,9 @@ using UnityEngine;
 [assembly: System.Reflection.AssemblyVersion("1.0.*")]
 namespace IcecreamView
 {
-    
+    /// <summary>
+    /// icecrean页面管理器，是驱动所有页面的核心控制器，用于控制页面生成、展示、隐藏、跳转等操作
+    /// </summary>
     public sealed class GameViewManager
     {
 

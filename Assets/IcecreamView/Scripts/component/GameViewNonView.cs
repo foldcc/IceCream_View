@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace IcecreamView {
+    /// <summary>
+    /// 空白的实例页面
+    /// </summary>
     public class GameViewNonView : GameViewAbstract
     {
         public bool isDebugLog = false;

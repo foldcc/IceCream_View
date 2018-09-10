@@ -2,6 +2,10 @@
 
 namespace IcecreamView
 {
+    /// <summary>
+    /// 单例模板类
+    /// </summary>
+    /// <typeparam name="T">必须为继承MonoBehaviour对象</typeparam>
     public class SingletonTemplate<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static volatile T instance;

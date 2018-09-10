@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 namespace IcecreamView {
-
+    /// <summary>
+    /// 空白的实例模块
+    /// </summary>
     public class GameViewNonModule : GameViewAbstractModule
     {
 
