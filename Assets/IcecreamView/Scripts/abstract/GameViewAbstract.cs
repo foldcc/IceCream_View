@@ -12,6 +12,9 @@ namespace IcecreamView {
         [HideInInspector]
         public string VIEWTABLE;
 
+        [HideInInspector]
+        public bool isOnce = false;
+
         /// <summary>
         /// 对应View管理器
         /// </summary>
@@ -45,7 +48,13 @@ namespace IcecreamView {
         public void CloseView()
         {
             OnCloseView();
-            gameObject.SetActive(false);
+            if (isOnce)
+            {
+                viewManager.clearViewAtHash(gameObject.GetHashCode());
+            }
+            else {
+                gameObject.SetActive(false);
+            }
         }
 
         /// <summary>

@@ -73,6 +73,7 @@ namespace IcecreamView
             gameViewAbstract.VIEWTABLE = Table;
             gameViewAbstract.SetViewManager(this);
             gameViewAbstract.OnInitView();
+            gameViewAbstract.isOnce = ContainsKeyView(Table);
             return gameViewAbstract;
         }
 
@@ -91,11 +92,11 @@ namespace IcecreamView
         }
 
         /// <summary>
-        /// 返回一个可用的指定table类型下标
+        /// 返回一个未被激活的指定table类型下标
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public int getActiveTable(string table) {
+        public int getDisableTable(string table) {
             for (int i = 0; i < ViewDictionary.Count; i++)
             {
                 if (table.Equals(ViewDictionary[i].VIEWTABLE) && !ViewDictionary[i].gameObject.activeSelf) {
@@ -127,7 +128,7 @@ namespace IcecreamView
        
         public GameViewAbstract OpenView(string table)
         {
-            int viewCount = getActiveTable(table);
+            int viewCount = getDisableTable(table);
             if (viewCount != -1)
             {
                 ViewDictionary[viewCount].transform.SetAsLastSibling();
@@ -182,7 +183,7 @@ namespace IcecreamView
         public void CloseView(string table) {
             if (ContainsKeyView(table))
             {
-                ViewDictionary[getActiveTable(table)].CloseView();
+                ViewDictionary[getDisableTable(table)].CloseView();
             }
         }
 
@@ -243,5 +244,21 @@ namespace IcecreamView
             }
             return default(T);
         }
+
+        /// <summary>
+        /// 销毁指定的view
+        /// </summary>
+        /// <param name="hash"></param>
+        public void clearViewAtHash(int hash) {
+            foreach (var item in ViewDictionary)
+            {
+                if (item.gameObject.GetHashCode() == hash) {
+                    GameObject.Destroy(item.gameObject);
+                    ViewDictionary.Remove(item);
+                    return;
+                }
+            }
+        }
+
     }
 }
