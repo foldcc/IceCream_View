@@ -131,19 +131,25 @@ namespace IcecreamView
             int viewCount = getDisableTable(table);
             if (viewCount != -1)
             {
+
                 ViewDictionary[viewCount].transform.SetAsLastSibling();
                 ViewDictionary[viewCount].gameObject.SetActive(true);
-                ViewDictionary[viewCount].OnCloseView();
+                ViewDictionary[viewCount].OnOpenView();
                 return ViewDictionary[viewCount];
-            } else if (ConfigViewDictionary.ContainsKey(table)) {
+
+            }
+            else if (ConfigViewDictionary.ContainsKey(table)) {
+
                 GameViewAbstract gameViewAbstract = CreateView(table);
                 gameViewAbstract.transform.SetAsLastSibling();
                 gameViewAbstract.gameObject.SetActive(true);
-                gameViewAbstract.OnCloseView();
+                gameViewAbstract.OnOpenView();
                 ViewDictionary.Add(gameViewAbstract);
                 return gameViewAbstract;
+
             }
             else {
+
                 Debug.LogError("GameViewManager : 打开view失败，未找到指定table --- " + table);
                 return null;
             }
@@ -160,10 +166,8 @@ namespace IcecreamView
             {
                 if (item.VIEWTABLE.Equals(table))
                 {
-                    if (!item.gameObject.activeSelf) {
-                        item.OnCloseView();
-                    }
                     item.gameObject.SetActive(true);
+                    item.OnOpenView();
                     view = item;
                 }
                 else
