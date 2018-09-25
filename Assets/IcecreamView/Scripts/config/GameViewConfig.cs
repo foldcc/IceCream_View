@@ -8,7 +8,7 @@ namespace IcecreamView {
     public struct GameViewInfo {
         public string Table;
         public string TableInfo;
-        [Header("是否提前缓存(用于大型View)")]
+        // 是否提前缓存(用于大型View)
         public bool isCache;
         public GameViewAbstract View;
     }
