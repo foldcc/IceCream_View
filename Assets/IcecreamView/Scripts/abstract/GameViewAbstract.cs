@@ -7,6 +7,12 @@ namespace IcecreamView {
     public abstract class GameViewAbstract : MonoBehaviour , GameViewInterface
     {
         /// <summary>
+        /// ViewTable标识 不能修改
+        /// </summary>
+        [HideInInspector]
+        public string VIEWTABLE;
+
+        /// <summary>
         /// 对应View管理器
         /// </summary>
         [System.NonSerialized]
