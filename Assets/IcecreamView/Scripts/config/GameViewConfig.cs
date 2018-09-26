@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +39,10 @@ namespace IcecreamView {
 
                 GameViewList.ForEach(view =>
                 {
-
-                    if (view.Table != string.Empty && !viewDic.ContainsKey(view.Table))
+                    if(view.Table == null){
+                        view.Table = view.View.name;
+                    }
+                    if (!viewDic.ContainsKey(view.Table))
                     {
                         viewDic.Add(view.Table, view);
                     }
