@@ -92,43 +92,50 @@ namespace IcecreamView
         }
 
         /// <summary>
-        /// 返回一个未被激活的指定table类型下标
+        /// 返回一个指定table的View对应下标
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public int getDisableTable(string table) {
+        public int getViewIndex(string table , bool isSinge = true) {
             for (int i = 0; i < ViewDictionary.Count; i++)
             {
-                if (table.Equals(ViewDictionary[i].VIEWTABLE) && !ViewDictionary[i].gameObject.activeSelf) {
-                    return i;
+                
+                if (table.Equals(ViewDictionary[i].VIEWTABLE)) {
+                    if (isSinge)
+                    {
+                        return i;
+                    } else if (!ViewDictionary[i].gameObject.activeSelf)
+                    {
+                        return i;
+                    }
                 }
             }
             return -1;
         }
 
-        public T OpenView<T>(string table) where T : GameViewAbstract {
-            GameViewAbstract view = OpenView(table);
+        public T OpenView<T>(string table, bool isSinge = true) where T : GameViewAbstract {
+            GameViewAbstract view = OpenView(table , isSinge);
             if (view != null) {
                 return view as T;
             }
             return null;
         }
 
-        public T OpenView<T>() where T : GameViewAbstract
+        public T OpenView<T>(bool isSinge = true) where T : GameViewAbstract
         {
             string cname = typeof(T).ToString();
             foreach (GameViewAbstract key in ViewDictionary) {
                 if (key.GetType().Name.Equals(cname)) {
-                    return OpenView<T>(key.VIEWTABLE);
+                    return OpenView<T>(key.VIEWTABLE , isSinge);
                 }
             }
             Debug.LogError("GameViewManager : 打开view失败，未找到指定T --- " + cname);
             return null;
         }
        
-        public GameViewAbstract OpenView(string table)
+        public GameViewAbstract OpenView(string table , bool isSinge = true)
         {
-            int viewCount = getDisableTable(table);
+            int viewCount = getViewIndex(table , isSinge);
             if (viewCount != -1)
             {
 
@@ -154,7 +161,7 @@ namespace IcecreamView
                 return null;
             }
         }
-
+        //TODO 逻辑不稳定，存在缺陷，需修改
         public GameViewAbstract OpenViewAndCloseOther(string table)
         {
             if (table == null)
@@ -187,7 +194,7 @@ namespace IcecreamView
         public void CloseView(string table) {
             if (ContainsKeyView(table))
             {
-                ViewDictionary[getDisableTable(table)].CloseView();
+                ViewDictionary[getViewIndex(table)].CloseView();
             }
         }
 

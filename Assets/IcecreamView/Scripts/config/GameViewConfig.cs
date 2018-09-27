@@ -39,7 +39,7 @@ namespace IcecreamView {
 
                 GameViewList.ForEach(view =>
                 {
-                    if(view.Table == null){
+                    if(view.Table == null || view.Table == ""){
                         view.Table = view.View.name;
                     }
                     if (!viewDic.ContainsKey(view.Table))
