@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace IcecreamView {
-    [DisallowMultipleComponent,System.Serializable]
-    public abstract class GameViewAbstract : MonoBehaviour , GameViewInterface
+namespace IcecreamView
+{
+    [DisallowMultipleComponent, System.Serializable]
+    public abstract class GameViewAbstract : MonoBehaviour, GameViewInterface
     {
         /// <summary>
         /// ViewTable标识 不能修改
@@ -21,8 +23,10 @@ namespace IcecreamView {
         [System.NonSerialized]
         private GameViewManager viewManager;
 
-        public void SetViewManager(GameViewManager viewManager) {
-            if (this.viewManager == null) {
+        public void SetViewManager(GameViewManager viewManager)
+        {
+            if (this.viewManager == null)
+            {
                 this.viewManager = viewManager;
             }
         }
@@ -31,16 +35,17 @@ namespace IcecreamView {
         /// 页面被创建初始化时触发该方法
         /// </summary>
         public virtual void OnInitView() { }
-        
+
         /// <summary>
         /// 页面打开时触发该方法
         /// </summary>
         public virtual void OnOpenView() { }
-        
+
         /// <summary>
         /// 页面被关闭前触发该方法
         /// </summary>
         public virtual void OnCloseView() { }
+
 
         /// <summary>
         /// 关闭当前页面
@@ -48,26 +53,51 @@ namespace IcecreamView {
         public void CloseView()
         {
             OnCloseView();
+            if (_closeHook())
+            {
+                _directClose();
+            }
+        }
+
+        /// <summary>
+        /// 用于截断页面关闭的钩子方法,默认返回true，如果返回false转为手动模式，需要自行close页面，适用于各种骚操作，请谨慎使用，可能会引起未知错误
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool _closeHook()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// 直接关闭页面，不会触发OnClose事件，通常情况下请使用CloseView方法，直接使用该方法可能导致不稳定出现位置问题
+        /// </summary>
+        protected void _directClose()
+        {
             if (isOnce)
             {
                 viewManager.clearViewAtHash(gameObject.GetHashCode());
             }
-            else {
+            else
+            {
                 gameObject.SetActive(false);
             }
         }
+
 
         /// <summary>
         /// 打开指定页面
         /// </summary>
         /// <param name="ViewTable">页面table</param>
         /// <param name="isCloseThis">是否同时关闭自己</param>
-        public void OpenView(string ViewTable , bool isCloseThis = false) {
-            if (viewManager != null) {
-                if (isCloseThis) {
+        public void OpenView(string ViewTable, bool isCloseThis = false, bool isSinge = false)
+        {
+            if (viewManager != null)
+            {
+                if (isCloseThis)
+                {
                     CloseView();
                 }
-                viewManager.OpenView(ViewTable);
+                viewManager.OpenView(ViewTable, isSinge);
             }
         }
     }

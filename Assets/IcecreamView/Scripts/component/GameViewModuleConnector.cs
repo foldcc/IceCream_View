@@ -30,7 +30,8 @@ namespace IcecreamView
             {
                 gameViewAbstractModules[awaitCount].OnOpenView();
                 awaitCount++;
-                if (isAwait) {
+                if (isAwait)
+                {
                     return;
                 }
             }
@@ -40,7 +41,8 @@ namespace IcecreamView
 
         public override void OnCloseView()
         {
-            if (awaitType != RunType.OnClose) {
+            if (awaitType != RunType.OnClose)
+            {
                 awaitCount = 0;
                 awaitType = RunType.OnClose;
             }
@@ -54,6 +56,7 @@ namespace IcecreamView
                 }
             }
             awaitCount = 0;
+            _directClose();
         }
 
         public override void OnInitView()
@@ -88,20 +91,28 @@ namespace IcecreamView
             }
         }
 
+        public override bool _closeHook()
+        {
+            return false;
+        }
+
         /// <summary>
         /// 停止该页面正在执行的生命周期 ,停止的范围仅限(OnOpen、OnClose)
         /// 不支持多线程操作
         /// </summary>
         /// <returns>用于重新恢复中断的生命周期执行器</returns>
-        public Action Await() {
+        public Action Await()
+        {
             isAwait = true;
             return Continue;
         }
 
-        private void Continue() {
+        public void Continue()
+        {
             if (!isAwait) return;
             isAwait = false;
-            switch (awaitType) {
+            switch (awaitType)
+            {
                 case RunType.OnClose:
                     OnCloseView();
                     break;
@@ -113,7 +124,8 @@ namespace IcecreamView
             }
         }
 
-        private enum RunType{
+        private enum RunType
+        {
             OnInit,
             OnOpen,
             OnClose
