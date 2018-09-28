@@ -96,7 +96,7 @@ namespace IcecreamView
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public int getViewIndex(string table , bool isSinge = true) {
+        public int getViewIndex(string table , bool isSinge = false) {
             for (int i = 0; i < ViewDictionary.Count; i++)
             {
                 
@@ -113,7 +113,7 @@ namespace IcecreamView
             return -1;
         }
 
-        public T OpenView<T>(string table, bool isSinge = true) where T : GameViewAbstract {
+        public T OpenView<T>(string table, bool isSinge = false) where T : GameViewAbstract {
             GameViewAbstract view = OpenView(table , isSinge);
             if (view != null) {
                 return view as T;
@@ -121,7 +121,7 @@ namespace IcecreamView
             return null;
         }
 
-        public T OpenView<T>(bool isSinge = true) where T : GameViewAbstract
+        public T OpenView<T>(bool isSinge = false) where T : GameViewAbstract
         {
             string cname = typeof(T).ToString();
             foreach (GameViewAbstract key in ViewDictionary) {
@@ -133,7 +133,7 @@ namespace IcecreamView
             return null;
         }
        
-        public GameViewAbstract OpenView(string table , bool isSinge = true)
+        public GameViewAbstract OpenView(string table , bool isSinge = false)
         {
             int viewCount = getViewIndex(table , isSinge);
             if (viewCount != -1)
