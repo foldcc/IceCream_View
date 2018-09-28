@@ -24,12 +24,14 @@ namespace IcecreamView
 
         public Transform UIparent;
 
-        public GameViewManager(GameViewConfig gameViewConfig, Transform parent) {
-            Init(gameViewConfig , parent);
+        public GameViewManager(GameViewConfig gameViewConfig, Transform parent)
+        {
+            Init(gameViewConfig, parent);
         }
 
-        [Obsolete("不在提供运行时修改View配置表",true)]
-        public void SetConfig(GameViewConfig config) {
+        [Obsolete("不在提供运行时修改View配置表", true)]
+        public void SetConfig(GameViewConfig config)
+        {
             Config = config;
         }
 
@@ -44,7 +46,8 @@ namespace IcecreamView
 
             ViewDictionary = new List<GameViewAbstract>();
 
-            if (Config == null) {
+            if (Config == null)
+            {
                 return;
             }
 
@@ -52,13 +55,15 @@ namespace IcecreamView
 
             foreach (string item in ConfigViewDictionary.Keys)
             {
-                if (ConfigViewDictionary[item].isCache) {
+                if (ConfigViewDictionary[item].isCache)
+                {
                     GameViewAbstract game = CreateView(item);
                     game.gameObject.SetActive(false);
                     ViewDictionary.Add(game);
                 }
             }
-            if (Config.DefaultViewTable != null) {
+            if (Config.DefaultViewTable != null)
+            {
                 OpenView(Config.DefaultViewTable);
             }
         }
@@ -68,8 +73,9 @@ namespace IcecreamView
         /// </summary>
         /// <param name="Table">ViewTable</param>
         /// <returns></returns>
-        private GameViewAbstract CreateView(string Table) {
-            GameViewAbstract gameViewAbstract = GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[Table].View , UIparent);
+        private GameViewAbstract CreateView(string Table)
+        {
+            GameViewAbstract gameViewAbstract = GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[Table].View, UIparent);
             gameViewAbstract.VIEWTABLE = Table;
             gameViewAbstract.SetViewManager(this);
             gameViewAbstract.OnInitView();
@@ -82,9 +88,12 @@ namespace IcecreamView
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public bool ContainsKeyView(string table) {
-            foreach (GameViewAbstract G in ViewDictionary) {
-                if (table.Equals(G.VIEWTABLE)) {
+        public bool ContainsKeyView(string table)
+        {
+            foreach (GameViewAbstract G in ViewDictionary)
+            {
+                if (table.Equals(G.VIEWTABLE))
+                {
                     return true;
                 }
             }
@@ -96,15 +105,18 @@ namespace IcecreamView
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public int getViewIndex(string table , bool isSinge = false) {
+        public int getViewIndex(string table, bool isSinge = false)
+        {
             for (int i = 0; i < ViewDictionary.Count; i++)
             {
-                
-                if (table.Equals(ViewDictionary[i].VIEWTABLE)) {
+
+                if (table.Equals(ViewDictionary[i].VIEWTABLE))
+                {
                     if (isSinge)
                     {
                         return i;
-                    } else if (!ViewDictionary[i].gameObject.activeSelf)
+                    }
+                    else if (!ViewDictionary[i].gameObject.activeSelf)
                     {
                         return i;
                     }
@@ -113,9 +125,11 @@ namespace IcecreamView
             return -1;
         }
 
-        public T OpenView<T>(string table, bool isSinge = false) where T : GameViewAbstract {
-            GameViewAbstract view = OpenView(table , isSinge);
-            if (view != null) {
+        public T OpenView<T>(string table, bool isSinge = false) where T : GameViewAbstract
+        {
+            GameViewAbstract view = OpenView(table, isSinge);
+            if (view != null)
+            {
                 return view as T;
             }
             return null;
@@ -124,18 +138,20 @@ namespace IcecreamView
         public T OpenView<T>(bool isSinge = false) where T : GameViewAbstract
         {
             string cname = typeof(T).ToString();
-            foreach (GameViewAbstract key in ViewDictionary) {
-                if (key.GetType().Name.Equals(cname)) {
-                    return OpenView<T>(key.VIEWTABLE , isSinge);
+            foreach (GameViewAbstract key in ViewDictionary)
+            {
+                if (key.GetType().Name.Equals(cname))
+                {
+                    return OpenView<T>(key.VIEWTABLE, isSinge);
                 }
             }
             Debug.LogError("GameViewManager : 打开view失败，未找到指定T --- " + cname);
             return null;
         }
-       
-        public GameViewAbstract OpenView(string table , bool isSinge = false)
+
+        public GameViewAbstract OpenView(string table, bool isSinge = false)
         {
-            int viewCount = getViewIndex(table , isSinge);
+            int viewCount = getViewIndex(table, isSinge);
             if (viewCount != -1)
             {
 
@@ -145,7 +161,8 @@ namespace IcecreamView
                 return ViewDictionary[viewCount];
 
             }
-            else if (ConfigViewDictionary.ContainsKey(table)) {
+            else if (ConfigViewDictionary.ContainsKey(table))
+            {
 
                 GameViewAbstract gameViewAbstract = CreateView(table);
                 gameViewAbstract.transform.SetAsLastSibling();
@@ -155,7 +172,8 @@ namespace IcecreamView
                 return gameViewAbstract;
 
             }
-            else {
+            else
+            {
 
                 Debug.LogError("GameViewManager : 打开view失败，未找到指定table --- " + table);
                 return null;
@@ -190,7 +208,8 @@ namespace IcecreamView
         /// 关闭指定Table的页面
         /// </summary>
         /// <param name="table"></param>
-        public void CloseView(string table) {
+        public void CloseView(string table)
+        {
             if (ContainsKeyView(table))
             {
                 ViewDictionary[getViewIndex(table)].CloseView();
@@ -201,10 +220,12 @@ namespace IcecreamView
         /// 关闭指定Hash页面
         /// </summary>
         /// <param name="gameHash"></param>
-        public void CloseViewForHash(int gameHash) {
+        public void CloseViewForHash(int gameHash)
+        {
             foreach (var item in ViewDictionary)
             {
-                if (item.gameObject.GetHashCode() == gameHash) {
+                if (item.gameObject.GetHashCode() == gameHash)
+                {
                     item.CloseView();
                 }
             }
@@ -219,7 +240,8 @@ namespace IcecreamView
             if (table == null) return;
             foreach (var item in ViewDictionary)
             {
-                if (table.Equals(item.VIEWTABLE)) {
+                if (table.Equals(item.VIEWTABLE))
+                {
                     item.CloseView();
                 }
             }
@@ -228,7 +250,8 @@ namespace IcecreamView
         /// <summary>
         /// 关闭所有页面
         /// </summary>
-        public void CloseAllView() {
+        public void CloseAllView()
+        {
             foreach (var item in ViewDictionary)
             {
                 item.CloseView();
@@ -241,13 +264,14 @@ namespace IcecreamView
         /// <typeparam name="T"></typeparam>
         /// <param name="table"></param>
         /// <returns></returns>
-        public T GetView<T>(string table)  where T : GameViewAbstract
+        public T GetView<T>(string table) where T : GameViewAbstract
         {
             if (ContainsKeyView(table))
             {
                 foreach (var item in ViewDictionary)
                 {
-                    if (table.Equals(item.VIEWTABLE)) {
+                    if (table.Equals(item.VIEWTABLE))
+                    {
                         return (T)item;
                     }
                 }
@@ -259,10 +283,12 @@ namespace IcecreamView
         /// 销毁指定的view
         /// </summary>
         /// <param name="hash"></param>
-        public void clearViewAtHash(int hash) {
+        public void clearViewAtHash(int hash)
+        {
             foreach (var item in ViewDictionary)
             {
-                if (item.gameObject.GetHashCode() == hash) {
+                if (item.gameObject.GetHashCode() == hash)
+                {
                     GameObject.Destroy(item.gameObject);
                     ViewDictionary.Remove(item);
                     return;
