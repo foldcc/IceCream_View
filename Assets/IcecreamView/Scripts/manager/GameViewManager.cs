@@ -161,29 +161,28 @@ namespace IcecreamView
                 return null;
             }
         }
-        //TODO 逻辑不稳定，存在缺陷，需修改
+
+        /// <summary>
+        /// 关闭所有页面 并打开指定页面
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
         public GameViewAbstract OpenViewAndCloseOther(string table)
         {
             if (table == null)
             {
                 return null;
             }
-            GameViewAbstract view = null;
+
             foreach (var item in ViewDictionary)
             {
-                if (item.VIEWTABLE.Equals(table))
+                if (item.gameObject.activeSelf)
                 {
-                    item.gameObject.SetActive(true);
-                    item.OnOpenView();
-                    view = item;
-                }
-                else
-                {
-                    if (item.gameObject.activeSelf) {
-                        item.CloseView();
-                    }
+                    item.CloseView();
                 }
             }
+
+            GameViewAbstract view = OpenView(table);
             return view;
         }
 
