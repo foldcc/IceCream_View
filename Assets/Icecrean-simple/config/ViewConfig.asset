@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -16,10 +16,13 @@ MonoBehaviour:
   GameViewList:
   - Table: MainPanel
     TableInfo: 
+    isCache: 0
     View: {fileID: 114479519334044784, guid: 08f45ce5974604241be0739be71a61c2, type: 2}
   - Table: HelpPanel
     TableInfo: 
+    isCache: 0
     View: {fileID: 114620517157865158, guid: 78ac6ffd24bf64c4bb6b9c0720251935, type: 2}
   - Table: GamePanel
     TableInfo: 
+    isCache: 0
     View: {fileID: 114887485968138206, guid: 883dac0dc258b4849a49ba351e748008, type: 2}

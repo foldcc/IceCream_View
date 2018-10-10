@@ -155,8 +155,8 @@ namespace IcecreamView
             if (viewCount != -1)
             {
 
-                ViewDictionary[viewCount].transform.SetAsLastSibling();
                 ViewDictionary[viewCount].gameObject.SetActive(true);
+                ViewDictionary[viewCount].transform.SetAsLastSibling();
                 ViewDictionary[viewCount].OnOpenView();
                 return ViewDictionary[viewCount];
 
@@ -165,8 +165,8 @@ namespace IcecreamView
             {
 
                 GameViewAbstract gameViewAbstract = CreateView(table);
-                gameViewAbstract.transform.SetAsLastSibling();
                 gameViewAbstract.gameObject.SetActive(true);
+                gameViewAbstract.transform.SetAsLastSibling();
                 gameViewAbstract.OnOpenView();
                 ViewDictionary.Add(gameViewAbstract);
                 return gameViewAbstract;
