@@ -21,6 +21,7 @@ namespace IcecreamView
 
         public override void OnOpenView()
         {
+            isAwait = false;
             if (awaitType != RunType.OnOpen)
             {
                 awaitCount = 0;
@@ -41,6 +42,7 @@ namespace IcecreamView
 
         public override void OnCloseView()
         {
+            isAwait = false;
             if (awaitType != RunType.OnClose)
             {
                 awaitCount = 0;
