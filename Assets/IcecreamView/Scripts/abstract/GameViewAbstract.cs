@@ -63,7 +63,7 @@ namespace IcecreamView
         /// 用于截断页面关闭的钩子方法,默认返回true，如果返回false转为手动模式，需要自行close页面，适用于各种骚操作，请谨慎使用，可能会引起未知错误
         /// </summary>
         /// <returns></returns>
-        public virtual bool _closeHook()
+        protected virtual bool _closeHook()
         {
             return true;
         }

@@ -19,6 +19,45 @@ namespace IcecreamView
 
         private bool isAwait = false;
 
+
+        /// <summary>
+        /// 获取指定类型的组件列表
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public List<T> GetViewModuleList<T>() where T : GameViewAbstractModule
+        {
+            List<T> modules = new List<T>();
+            string cname = typeof(T).ToString();
+            foreach (GameViewAbstractModule key in gameViewAbstractModules)
+            {
+                if (key.GetType().Name.Equals(cname))
+                {
+                    modules.Add((T)key);
+                }
+            }
+            return modules;
+        }
+
+        /// <summary>
+        /// 获取该页面上第一个指定类型的组件
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public T GetViewModule<T>() where T : GameViewAbstractModule
+        {
+            string cname = typeof(T).ToString();
+            foreach (GameViewAbstractModule key in gameViewAbstractModules)
+            {
+                if (key.GetType().Name.Equals(cname))
+                {
+                    return (T)key;
+                }
+            }
+            return null;
+        }
+
+
         public override void OnOpenView()
         {
             isAwait = false;
@@ -93,7 +132,7 @@ namespace IcecreamView
             }
         }
 
-        public override bool _closeHook()
+        protected override bool _closeHook()
         {
             return false;
         }
