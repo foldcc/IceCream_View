@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -89,7 +89,7 @@ namespace IcecreamView
         /// </summary>
         /// <param name="ViewTable">页面table</param>
         /// <param name="isCloseThis">是否同时关闭自己</param>
-        public void OpenView(string ViewTable, bool isCloseThis = false, bool isSinge = false)
+        public GameViewAbstract OpenView(string ViewTable, bool isCloseThis = false, bool isSinge = false)
         {
             if (viewManager != null)
             {
@@ -97,8 +97,9 @@ namespace IcecreamView
                 {
                     CloseView();
                 }
-                viewManager.OpenView(ViewTable, isSinge);
+                return viewManager.OpenView(ViewTable, isSinge);
             }
+            return null;
         }
     }
 }
