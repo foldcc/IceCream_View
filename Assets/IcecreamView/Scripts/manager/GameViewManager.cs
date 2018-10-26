@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -105,7 +105,7 @@ namespace IcecreamView
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public int getViewIndex(string table, bool isSinge = false)
+        public int getViewIndex(string table, bool isSinge = false , bool objectType = false)
         {
             for (int i = 0; i < ViewDictionary.Count; i++)
             {
@@ -116,7 +116,7 @@ namespace IcecreamView
                     {
                         return i;
                     }
-                    else if (!ViewDictionary[i].gameObject.activeSelf)
+                    else if (ViewDictionary[i].gameObject.activeSelf == objectType)
                     {
                         return i;
                     }
