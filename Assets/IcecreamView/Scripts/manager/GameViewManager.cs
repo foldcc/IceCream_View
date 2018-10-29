@@ -76,10 +76,10 @@ namespace IcecreamView
         private GameViewAbstract CreateView(string Table)
         {
             GameViewAbstract gameViewAbstract = GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[Table].View, UIparent);
+            gameViewAbstract.isOnce = ContainsKeyView(Table);
             gameViewAbstract.VIEWTABLE = Table;
             gameViewAbstract.SetViewManager(this);
             gameViewAbstract.OnInitView();
-            gameViewAbstract.isOnce = ContainsKeyView(Table);
             return gameViewAbstract;
         }
 
