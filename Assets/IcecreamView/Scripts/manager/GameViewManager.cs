@@ -6,7 +6,7 @@ using UnityEngine;
 namespace IcecreamView
 {
     /// <summary>
-    /// icecrean页面管理器，是驱动所有页面的核心控制器，用于控制页面生成、展示、隐藏、跳转等操作
+    /// icecream页面管理器，是驱动所有页面的核心控制器，用于控制页面生成、展示、隐藏、跳转等操作
     /// </summary>
     public sealed class GameViewManager
     {
@@ -212,7 +212,9 @@ namespace IcecreamView
         {
             if (ContainsKeyView(table))
             {
-                ViewDictionary[getViewIndex(table)].CloseView();
+                var count = getViewIndex(table, false, true);
+                if (count == -1) return;
+                ViewDictionary[count].CloseView();
             }
         }
 
