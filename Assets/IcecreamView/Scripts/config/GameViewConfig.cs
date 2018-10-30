@@ -31,12 +31,9 @@ namespace IcecreamView {
         /// <returns></returns>
         public Dictionary<string, GameViewInfo> GetViewWithDic()
         {
-
+            Dictionary<string, GameViewInfo> viewDic = new Dictionary<string, GameViewInfo>();
             if (GameViewList != null && GameViewList.Count > 0)
             {
-
-                Dictionary<string, GameViewInfo> viewDic = new Dictionary<string, GameViewInfo>();
-
                 GameViewList.ForEach(view =>
                 {
                     if(view.Table == null || view.Table == ""){
@@ -48,11 +45,8 @@ namespace IcecreamView {
                     }
 
                 });
-
-                return viewDic;
             }
-
-            return null;
+            return viewDic;
         }
     }
 }

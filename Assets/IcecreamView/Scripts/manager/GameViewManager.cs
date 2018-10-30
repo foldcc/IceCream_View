@@ -62,7 +62,7 @@ namespace IcecreamView
                     ViewDictionary.Add(game);
                 }
             }
-            if (Config.DefaultViewTable != null)
+            if (Config.DefaultViewTable != null && Config.DefaultViewTable != "")
             {
                 OpenView(Config.DefaultViewTable);
             }
