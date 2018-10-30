@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace IcecreamView
 {
@@ -18,17 +18,13 @@ namespace IcecreamView
                 {
                     if (instance == null)
                     {
-                        T[] instances = FindObjectsOfType<T>();
-                        if (instances != null)
+                       instance = FindObjectOfType<T>();
+                        if (instance == null)
                         {
-                            for (var i = 0; i < instances.Length; i++)
-                            {
-                                Destroy(instances[i].gameObject);
-                            }
+                            GameObject go = new GameObject();
+                            go.name = typeof(T).Name;
+                            instance = go.AddComponent<T>();
                         }
-                        GameObject go = new GameObject();
-                        go.name = typeof(T).Name;
-                        instance = go.AddComponent<T>();
                     }
                 }
                 return instance;
