@@ -76,9 +76,16 @@ namespace IcecreamView
         private GameViewAbstract CreateView(string Table)
         {
             GameViewAbstract gameViewAbstract = GameObject.Instantiate<GameViewAbstract>(ConfigViewDictionary[Table].View, UIparent);
-            gameViewAbstract.isOnce = ContainsKeyView(Table);
             gameViewAbstract.VIEWTABLE = Table;
+            if (ConfigViewDictionary[Table].isOnce)
+            {
+                gameViewAbstract.isOnce = ConfigViewDictionary[Table].isOnce;
+            }
+            else {
+                gameViewAbstract.isOnce = ContainsKeyView(Table);
+            }
             gameViewAbstract.SetViewManager(this);
+            gameViewAbstract.isOpen = false;
             gameViewAbstract.OnInitView();
             return gameViewAbstract;
         }
@@ -154,28 +161,26 @@ namespace IcecreamView
             int viewCount = getViewIndex(table, isSinge);
             if (viewCount != -1)
             {
-
+                ViewDictionary[viewCount].isOpen = true;
                 ViewDictionary[viewCount].gameObject.SetActive(true);
                 ViewDictionary[viewCount].transform.SetAsLastSibling();
                 ViewDictionary[viewCount].OnOpenView();
                 return ViewDictionary[viewCount];
-
             }
             else if (ConfigViewDictionary.ContainsKey(table))
             {
-
                 GameViewAbstract gameViewAbstract = CreateView(table);
+                gameViewAbstract.isOpen = true;
                 gameViewAbstract.gameObject.SetActive(true);
                 gameViewAbstract.transform.SetAsLastSibling();
                 gameViewAbstract.OnOpenView();
                 ViewDictionary.Add(gameViewAbstract);
                 return gameViewAbstract;
-
             }
             else
             {
 
-                Debug.LogError("GameViewManager : 打开view失败，未找到指定table --- " + table);
+                Debug.LogFormat("<color=yellow>{0}</color>" , "GameViewManager : 打开view失败，未找到指定table --- " + table);
                 return null;
             }
         }
@@ -185,7 +190,7 @@ namespace IcecreamView
         /// </summary>
         /// <param name="table"></param>
         /// <returns></returns>
-        public GameViewAbstract OpenViewAndCloseOther(string table)
+        public GameViewAbstract OpenViewAndCloseOther(string table , bool isSinge)
         {
             if (table == null)
             {
@@ -194,13 +199,13 @@ namespace IcecreamView
 
             foreach (var item in ViewDictionary)
             {
-                if (item.gameObject.activeSelf)
+                if (item.isOpen)
                 {
                     item.CloseView();
                 }
             }
 
-            GameViewAbstract view = OpenView(table);
+            GameViewAbstract view = OpenView(table , isSinge);
             return view;
         }
 

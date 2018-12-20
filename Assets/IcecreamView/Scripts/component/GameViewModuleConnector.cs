@@ -132,6 +132,17 @@ namespace IcecreamView
             }
         }
 
+        public override void OnDestoryView()
+        {
+            isAwait = false;
+            awaitCount = 0;
+            while (awaitCount < gameViewAbstractModules.Count)
+            {
+                gameViewAbstractModules[awaitCount].OnDestoryView();
+                awaitCount++;
+            }
+        }
+
         protected override bool _closeHook()
         {
             return false;
