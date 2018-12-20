@@ -15,6 +15,10 @@ namespace IcecreamView
         public string VIEWTABLE;
 
         [HideInInspector]
+        ///用于判断页面是否开启
+        public bool isOpen = false;
+
+        [HideInInspector]
         public bool isOnce = false;
 
         /// <summary>
@@ -46,12 +50,21 @@ namespace IcecreamView
         /// </summary>
         public virtual void OnCloseView() { }
 
+        /// <summary>
+        /// 页面被彻底销毁时触发
+        /// </summary>
+        public virtual void OnDestoryView() { }
 
         /// <summary>
         /// 关闭当前页面
         /// </summary>
         public void CloseView()
         {
+            if (!isOpen) {
+                Debug.Log(VIEWTABLE +" view is Closing");
+                return;
+            }
+            isOpen = false;
             OnCloseView();
             if (_closeHook())
             {
@@ -83,7 +96,6 @@ namespace IcecreamView
             }
         }
 
-
         /// <summary>
         /// 打开指定页面
         /// </summary>
@@ -100,6 +112,11 @@ namespace IcecreamView
                 return viewManager.OpenView(ViewTable, isSinge);
             }
             return null;
+        }
+
+        private void OnDestroy()
+        {
+            OnDestoryView();
         }
     }
 }

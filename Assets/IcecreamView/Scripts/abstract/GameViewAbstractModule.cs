@@ -21,6 +21,8 @@ namespace IcecreamView {
 
         public virtual void OnInitView() { }
 
+        public virtual void OnDestoryView() { }
+
     }
 }
 
