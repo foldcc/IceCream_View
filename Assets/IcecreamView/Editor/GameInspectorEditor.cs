@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using IcecreamView;
+using System.Collections.Generic;
 
 [assembly: System.Reflection.AssemblyVersion("1.0.*")]
 
@@ -101,5 +102,29 @@ public class GameViewAbstractModuleEditor : Editor
         base.DrawDefaultInspector();
         this.serializedObject.ApplyModifiedProperties();
     }
+}
+
+public static class IceViewConfigTool{
+    [MenuItem("Assets/Create/AutoViewConfig")]
+    public static void CreatConfig() {
+        Object[] arr = Selection.GetFiltered(typeof(GameViewAbstract), SelectionMode.TopLevel);
+        var GameConfig = ScriptableObject.CreateInstance<GameViewConfig>();
+        List<GameViewInfo> gameInfos = new List<GameViewInfo>();
+        foreach (var item in arr)
+        {
+            var a = new GameViewInfo();
+            a.View = (GameViewAbstract)item;
+            a.Table = item.name;
+            gameInfos.Add(a);
+        }
+        GameConfig.GameViewList = gameInfos;
+        GameConfig.ConfigName = "defaultConfig";
+        if (arr.Length > 0) {
+            var filePath = AssetDatabase.GetAssetPath(arr[0]).Replace(arr[0].name + ".prefab", "viewConfig.asset");
+            AssetDatabase.CreateAsset(GameConfig, AssetDatabase.GetAssetPath(arr[0]).Replace(arr[0].name + ".prefab", "viewConfig.asset"));
+        }
+        AssetDatabase.Refresh();
+    }
+
 }
 

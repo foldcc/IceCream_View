@@ -7,9 +7,8 @@ namespace IcecreamView {
     [System.Serializable]
     public struct GameViewInfo {
         public GameViewAbstract View;
-
+        [Header("可选填，默认为View预制体名称")]
         public string Table;
-        public string TableInfo;
         // 是否提前缓存(用于大型View)
         public bool isCache;
         // 是否作为一次性使用，当页面被关闭时直接销毁
@@ -52,5 +51,6 @@ namespace IcecreamView {
             }
             return viewDic;
         }
+
     }
 }
