@@ -17,6 +17,10 @@
         /// </summary>
         void OnCloseView();
         /// <summary>
+        /// 页面被销毁时触发
+        /// </summary>
+        void OnDestoryView();
+        /// <summary>
         /// 关闭当前页面
         /// </summary>
         void CloseView();
