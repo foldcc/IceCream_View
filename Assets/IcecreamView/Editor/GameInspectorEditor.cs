@@ -105,7 +105,7 @@ public class GameViewAbstractModuleEditor : Editor
 }
 
 public static class IceViewConfigTool{
-    [MenuItem("Assets/Create/AutoViewConfig")]
+    [MenuItem("Assets/Create/Config/AutoViewConfig")]
     public static void CreatConfig() {
         Object[] arr = Selection.GetFiltered(typeof(GameViewAbstract), SelectionMode.TopLevel);
         var GameConfig = ScriptableObject.CreateInstance<GameViewConfig>();
@@ -121,7 +121,8 @@ public static class IceViewConfigTool{
         GameConfig.ConfigName = "defaultConfig";
         if (arr.Length > 0) {
             var filePath = AssetDatabase.GetAssetPath(arr[0]).Replace(arr[0].name + ".prefab", "viewConfig.asset");
-            AssetDatabase.CreateAsset(GameConfig, AssetDatabase.GetAssetPath(arr[0]).Replace(arr[0].name + ".prefab", "viewConfig.asset"));
+            AssetDatabase.CreateAsset(GameConfig, filePath);
+            Debug.LogFormat("Create Config : {0}" , filePath);
         }
         AssetDatabase.Refresh();
     }

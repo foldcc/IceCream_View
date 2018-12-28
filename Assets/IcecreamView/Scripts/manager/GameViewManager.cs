@@ -144,10 +144,7 @@ namespace IcecreamView
 
             foreach (var item in ViewDictionary)
             {
-                if (item.isOpen)
-                {
-                    item.CloseView();
-                }
+                item.CloseView();
             }
 
             GameViewAbstract view = OpenView(table , isSinge);
