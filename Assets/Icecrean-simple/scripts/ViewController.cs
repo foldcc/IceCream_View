@@ -9,7 +9,7 @@ public class ViewController : MonoBehaviour {
 
     public Transform Canvasteansform;
 	
-    private GameViewManager viewManager;
+    public GameViewManager viewManager;
 
 
     private void Start()

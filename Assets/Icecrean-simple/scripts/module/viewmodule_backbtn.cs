@@ -10,6 +10,7 @@ public class viewmodule_backbtn : GameViewAbstractModule {
 
     public override void OnInitView()
     {
+        //页面第一次被创建时
         if (backBtn != null) {
             backBtn.onClick.AddListener(()=> {
                 viewConnector.CloseView();
@@ -17,4 +18,18 @@ public class viewmodule_backbtn : GameViewAbstractModule {
         }
     }
 
+    public override void OnOpenView()
+    {
+        //页面被打开时
+    }
+
+    public override void OnCloseView()
+    {
+        //页面被关闭时
+    }
+
+    public override void OnDestoryView()
+    {
+        //页面被销毁时
+    }
 }
