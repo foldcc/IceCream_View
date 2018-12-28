@@ -96,6 +96,7 @@ namespace IcecreamView
             gameViewAbstract.OnInitView();
             return gameViewAbstract;
         }
+        
         /// <summary>
         /// 打开指定页面
         /// </summary>
@@ -130,6 +131,7 @@ namespace IcecreamView
                 return null;
             }
         }
+
         /// <summary>
         /// 关闭所有页面 并打开指定页面
         /// </summary>
