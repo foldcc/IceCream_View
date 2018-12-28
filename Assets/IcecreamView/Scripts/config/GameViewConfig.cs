@@ -18,7 +18,7 @@ namespace IcecreamView {
     /// <summary>
     /// 游戏View配置表
     /// </summary>
-    [CreateAssetMenu(fileName = "GameViewConfig" , menuName = "Config/IceViewConfig")]
+    [CreateAssetMenu(fileName = "GameViewConfig" , menuName = "IceCreamView/IceView Config" , order = 88)]
     public class GameViewConfig : ScriptableObject
     {
 

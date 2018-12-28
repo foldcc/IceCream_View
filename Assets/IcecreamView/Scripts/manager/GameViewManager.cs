@@ -299,7 +299,7 @@ namespace IcecreamView
         /// 销毁指定的view
         /// </summary>
         /// <param name="hash"></param>
-        public void clearViewAtHash(int hash)
+        public void DestoryViewAtHash(int hash)
         {
             foreach (var item in ViewDictionary)
             {

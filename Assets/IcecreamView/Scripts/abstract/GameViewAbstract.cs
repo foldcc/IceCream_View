@@ -88,7 +88,7 @@ namespace IcecreamView
         {
             if (isOnce)
             {
-                viewManager.clearViewAtHash(gameObject.GetHashCode());
+                viewManager.DestoryViewAtHash(gameObject.GetHashCode());
             }
             else
             {
