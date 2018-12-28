@@ -105,7 +105,7 @@ public class GameViewAbstractModuleEditor : Editor
 }
 
 public static class IceViewConfigTool{
-    [MenuItem("Assets/Create/Config/AutoViewConfig")]
+    [MenuItem("Assets/Create/IceCreamView/AutoView Config", false, 88)]
     public static void CreatConfig() {
         Object[] arr = Selection.GetFiltered(typeof(GameViewAbstract), SelectionMode.TopLevel);
         var GameConfig = ScriptableObject.CreateInstance<GameViewConfig>();

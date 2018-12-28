@@ -1,0 +1,27 @@
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using IcecreamView;
+
+public class #SCRIPTNAME# : GameViewAbstract
+{
+    public override void OnInitView()
+    {
+        //页面第一次被创建时
+    }
+
+    public override void OnOpenView()
+    {
+        //页面被打开时
+    }
+
+    public override void OnCloseView()
+    {
+        //页面被关闭时
+    }
+
+    public override void OnDestoryView()
+    {
+        //页面被销毁时
+    }
+}
